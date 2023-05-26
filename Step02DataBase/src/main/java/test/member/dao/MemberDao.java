@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tes.util.DbcpBean;
+import test.guest.dto.GuestDto;
 import test.member.dto.MemberDto;
 
 /*
@@ -160,14 +161,12 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			String sql = "update member"
-					+ " set name = ? , addr = ?"
+					+ " set name = ? , address = ?"
 					+ " where num = ?";
 			pstmt = conn.prepareStatement(sql);
-			// sql 미완성 시 여기서 완성
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getAddr());
 			pstmt.setInt(3, dto.getNum());
-			// sql 수행 후 변화된 ( 추가 , 삭제 , 수정 ) row 의 갯수 리턴
 			rowCount = pstmt.executeUpdate();
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -180,7 +179,6 @@ public class MemberDao {
 			} catch (Exception e) {
 			}
 		}
-		// 만일 변화된 row 의 갯수가 0 보다 크면 작업 성공
 		if (rowCount > 0) {
 			return true;
 		} else {

@@ -1,17 +1,21 @@
-package test.todo.dto;
+package test.guest.dto;
 
-public class TodoDto {
+public class GuestDto {
 	private int num;
-	private String work;
-	private String addr;
+	private String writer;
+	private String content;
+	private String pwd;
+	private String regdate;
 	
-	public TodoDto() {}
+	public GuestDto() {}
 
-	public TodoDto(int num, String work, String addr) {
+	public GuestDto(int num, String writer, String content, String pwd, String regdate) {
 		super();
 		this.num = num;
-		this.work = work;
-		this.addr = addr;
+		this.writer = writer;
+		this.content = content;
+		this.pwd = pwd;
+		this.regdate = regdate;
 	}
 
 	public int getNum() {
@@ -22,19 +26,35 @@ public class TodoDto {
 		this.num = num;
 	}
 
-	public String getWork() {
-		return work;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setWork(String work) {
-		this.work = work;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getContent() {
+		return content;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	public String getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 }

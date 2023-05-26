@@ -33,7 +33,7 @@
 		<%if(isSuccess){%>
 			<p class = "alert alert-success">
 				<strong><%=name%></strong> 님의 정보가 저장되었습니다.
-				<a class = "alert-link" href = "insertform.jsp">확인</a>
+				<a class = "alert-link" href = "list.jsp">확인</a>
 			</p>
 		<%}else{%>
 			<p class = "alert alert-warning">
