@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 <%
 	// 1. 폼 전송되는 id , pwd 을 읽어와서
-	request.setCharacterEncoding("utf-8");
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
 	
