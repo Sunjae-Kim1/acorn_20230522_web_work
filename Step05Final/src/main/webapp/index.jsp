@@ -27,6 +27,8 @@
 		<ul>
 			<li><a href = "${pageContext.request.contextPath}/users/signup_form.jsp">회원가입</a></li>
 			<li><a href = "${pageContext.request.contextPath}/users/loginform.jsp">로그인</a></li>
+			<li><a href = "${pageContext.request.contextPath}/private/game.jsp">놀러가기 ( 로그인 필요 )</a></li>
+			<li><a href = "${pageContext.request.contextPath}/private/study.jsp">공부하기 ( 로그인 필요 )</a></li>
 		</ul>
 	</div>
 </body>
