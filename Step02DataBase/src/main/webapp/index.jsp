@@ -1,4 +1,4 @@
-<%@page import="tes.util.DbcpBean"%>
+<%@page import="test.util.DbcpBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

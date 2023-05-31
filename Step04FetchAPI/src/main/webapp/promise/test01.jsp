@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>promise/test01.jsp</title>
+<title>/promise/test01.jsp</title>
 </head>
 <body>
 	<h3> 콜백 지옥??? </h3>

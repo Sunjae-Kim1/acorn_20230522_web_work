@@ -1,4 +1,4 @@
-package tes.util;
+package test.util;
 
 import java.sql.Connection;
 

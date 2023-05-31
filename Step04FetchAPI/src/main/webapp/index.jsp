@@ -12,6 +12,7 @@
 		<h1> 인덱스 페이지입니다. </h1>
 		<ul>
 			<li><a href = "promise/test01.jsp">Promise 페이지</a></li>
+			<li><a href = "fetch/test01.jsp">Fetch 페이지</a></li>
 		</ul>
 	</div>
 </body>
