@@ -4,9 +4,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<FileDto> list = FileDao.getInstance().getList();
+	final int page_row = 5;
+
+	int pageNum = 1;
+	
+	String	strPageNum = request.getParameter("pageNum");
+	
+	if(strPageNum != null){
+		pageNum = Integer.parseInt(strPageNum);
+	}
+	
+	int startRowNum = (pageNum - 1) * page_row + 1;
+	int endRowNum = pageNum * page_row;
+	
+	FileDto dto = new FileDto();
+	dto.setStartRowNum(startRowNum);
+	dto.setEndRowNum(endRowNum);
+
+	List<FileDto> list = FileDao.getInstance().getList(dto);
+	
 	// 로그인된 아이디 ( 없으면 null )
 	String id = (String)session.getAttribute("id");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -54,6 +73,15 @@
 				<%}%>
 			</tbody>
 		</table>
+		
+		<ul class = "pagination justify-content-center">
+			<%for(int i = 1; i <= 10; i ++){%>
+				<li class="page-item" >
+					<a class="page-link" href = "list.jsp?pageNum=<%=i%>"><%=i%></a>
+				</li>
+			<%}%>
+		</ul>
+		
 	</div>
 </body>
 </html>

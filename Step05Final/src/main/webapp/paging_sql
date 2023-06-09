@@ -1,0 +1,8 @@
+select *
+from
+	(select result1.* , rownum as rnum
+	from 
+		(select num , writer , title , regdate
+		from board_file
+		order by num desc) result1)
+where rnum between 1 and 10 ;

@@ -137,7 +137,50 @@ public class FileDao {
 	      }
 	   } // insert()
 	   
-	   public List<FileDto> getList() {
+	   public List<FileDto> getList(FileDto dto) {
+			List<FileDto> list = new ArrayList<FileDto>();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				conn = new DbcpBean().getConn();
+				String sql = "select *"
+							+ "	from"
+							+ "		(select result1.* , rownum as rnum"
+							+ "		from"
+							+ "			(select num , writer , title , orgFileName , saveFileName , fileSize , regdate"
+							+ "			from board_file"
+							+ "			order by num desc)"
+							+ "		result1)"
+							+ " where rnum between ? and  ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, dto.getStartRowNum());
+				pstmt.setInt(2, dto.getEndRowNum());
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					FileDto tmp = new FileDto();
+					tmp.setNum(rs.getInt("num"));
+					tmp.setWriter(rs.getString("writer"));
+					tmp.setTitle(rs.getString("title"));
+					tmp.setOrgFileName(rs.getString("orgFileName"));
+					// tmp.setSaveFileName(rs.getString("saveFileName"));
+					tmp.setFileSize(rs.getLong("fileSize"));
+					tmp.setRegdate(rs.getString("regdate"));
+					list.add(tmp);
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs!=null)rs.close();
+					if(pstmt!=null)pstmt.close();
+					if(conn!=null)conn.close();
+				}catch (Exception e) {}
+			}
+			return list;
+		} // List<FileDto>
+	   
+	   public List<FileDto> getListAll() {
 			List<FileDto> list = new ArrayList<FileDto>();
 			Connection conn = null;
 			PreparedStatement pstmt = null;
@@ -145,20 +188,20 @@ public class FileDao {
 			try {
 				conn = new DbcpBean().getConn();
 				String sql = "select num , writer , title , orgFileName , saveFileName , fileSize , regdate"
-						+ " from board_file"
-						+ " order by num desc";
+							+ "	from board_file"
+							+ "	order by num desc";
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
-					FileDto dto = new FileDto();
-					dto.setNum(rs.getInt("num"));
-					dto.setWriter(rs.getString("writer"));
-					dto.setTitle(rs.getString("title"));
-					dto.setOrgFileName(rs.getString("orgFileName"));
-					// dto.setSaveFileName(rs.getString("saveFileName"));
-					dto.setFileSize(rs.getLong("fileSize"));
-					dto.setRegdate(rs.getString("regdate"));
-					list.add(dto);
+					FileDto tmp = new FileDto();
+					tmp.setNum(rs.getInt("num"));
+					tmp.setWriter(rs.getString("writer"));
+					tmp.setTitle(rs.getString("title"));
+					tmp.setOrgFileName(rs.getString("orgFileName"));
+					// tmp.setSaveFileName(rs.getString("saveFileName"));
+					tmp.setFileSize(rs.getLong("fileSize"));
+					tmp.setRegdate(rs.getString("regdate"));
+					list.add(tmp);
 				}
 			}catch (Exception e) {
 				e.printStackTrace();

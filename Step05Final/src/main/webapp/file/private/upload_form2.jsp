@@ -9,7 +9,7 @@
 <body>
 	<div class = "container">
 		<h3> 파일 업로드 폼2 입니다. </h3>
-		 <form action = "ajax_upload.jsp" method = "post" enctype="multipart/form-data" id = "myForm">
+		 <form action = "upload2.jsp" method = "post" enctype="multipart/form-data" id = "myForm">
 		 	<div>
 		 		<label for = "title">제목</label>
 		 		<input type = "text" name = "title" id = "title"/>
@@ -26,7 +26,7 @@
 		// 폼에 "submit" 이벤트가 일어났을때 실행할 함수 등록
 		document.querySelector("#myForm").addEventListener("submit",(e)=>{
 			// 폼 전송 막기
-			e.preventDefault();
+			// e.preventDefault();
 			
 			// 폼에 입력하거나 선택한 정보를 JavaScript 로 직접 전송
 			// 폼에 입력한 데이터를 FormData 에 담고
