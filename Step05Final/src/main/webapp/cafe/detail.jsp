@@ -23,6 +23,9 @@
 <body>
 	<div class = "container">
 		<h1 align = "center"> 자세히 보기 폼 </h1>
+			<div align = "right">
+				<a href = "${pageContext.request.contextPath}/cafe/list.jsp">뒤로(게시판) 가기</a>
+			</div>
 		<table class = "table table-bordered" >
 			<tr>
 				<th>글번호</th>
@@ -46,13 +49,15 @@
 			</tr>
 			<tr>
 				<td colspan = "2">
-					<textarea class = "form-control" rows = "10" readonly><%=dto.getContent()%>
-				</textarea></td>
+					<div id = "content">
+						<%=dto.getContent()%>
+					</div>
+				</td>
 			</tr>
 		</table>
 		<%
-			// 로그인된 아이디가 있으면 읽는다. ( null 가능 )
-			String id = (String)session.getAttribute("id");
+		// 로그인된 아이디가 있으면 읽는다. ( null 가능 )
+		String id = (String)session.getAttribute("id");
 		%>
 		<%-- 만일 글 작성자가 로그인된 아이디와 같으면 수정 , 삭제 가능 --%>
 		<%if(dto.getWriter().equals(id)){%>
@@ -67,7 +72,7 @@
 					}
 				}
 			</script>
-		<%}%>
+			<%}%>
 	</div>
 </body>
 </html>
