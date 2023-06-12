@@ -26,7 +26,7 @@
 		// 폼에 "submit" 이벤트가 일어났을때 실행할 함수 등록
 		document.querySelector("#myForm").addEventListener("submit",(e)=>{
 			// 폼 전송 막기
-			// e.preventDefault();
+			e.preventDefault();
 			
 			// 폼에 입력하거나 선택한 정보를 JavaScript 로 직접 전송
 			// 폼에 입력한 데이터를 FormData 에 담고

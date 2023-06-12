@@ -17,3 +17,19 @@ create table board_file(
 );
 
 create sequence board_file_seq;
+
+create table board_cafe(
+	num number primary key,			-- 글 번호
+	writer varchar2(100) not null,		-- 작성자 ( 로그인된 아이디 )
+	title varchar2(100) not null,		-- 제목
+	content clob,							-- 글 내용
+	viewCount number,					-- 조회 수
+	regdate date							-- 글 작성일
+);
+
+-- 게시글의 번호 시퀸스
+create sequence board_cafe_seq;
+
+update board_cafe
+set viewCount=viewCount+1
+where num = 13;
