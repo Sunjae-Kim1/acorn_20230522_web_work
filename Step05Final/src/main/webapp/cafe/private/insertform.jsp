@@ -9,6 +9,13 @@
 </head>
 <body>
 	<div class = "container">
+		<nav>
+  			<ol class="breadcrumb">
+    			<li class="breadcrumb-item"><a href="../../index.jsp">Home</a></li>
+    			<li class="breadcrumb-item"><a href="../list.jsp">Cafe</a></li>
+    			<li class="breadcrumb-item active">Insert</li>
+  			</ol>
+		</nav>
 		<h1 align = "center"> 게시글 작성 폼 </h1>
 			<div align = "right">
 				<a href = "${pageContext.request.contextPath}/cafe/list.jsp">뒤로(게시판) 가기</a>
