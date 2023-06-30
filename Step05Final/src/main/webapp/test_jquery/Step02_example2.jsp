@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/test_jquery/Step02_example.jsp</title>
+<title>/test_jquery/Step02_example2.jsp</title>
 <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -34,6 +34,13 @@
 	</div>
 	<script src = "https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
 	<script>
+		//test
+		const temp = `
+			<li>
+				<a href = ""></a>
+			</li>
+		`;
+	
 		// 매개변수에 전달되는 페이지 번호에 해당하는 정보를 요청하는 함수
 		function request(pageNum){
 			// clear
@@ -54,31 +61,34 @@
 						const td3 = $("<td>").text(item.title);
 						$("<tr>").append(td1).append(td2).append(td3).appendTo("tbody");
 					});
+					// li 요소의 template
+					let template = `
+						<li class = "page-item">
+							<a class = "page-link" href = "javascript:"></a>
+						</li>
+					`;
 					
 					if(data.startPageNum != 1){
-						let template = `
-							<li class = "page-item">
-								<a class = "page-link" href = "javascript:request(\${data.startPageNum - 1})">Prev</a>
-							</li>
-						`;
-						$(template).appendTo(".pagination");
+						const num = data.startPageNum - 1;
+						$(template)
+						.find("a").text("Prev").on("click" , function(){
+							// a 요소를 클릭 시 새로운 자료를 요청한다.
+							request(data.startPageNum - 1);
+						}).parent().appendTo(".pagination");
 					}
 					// 반복문 돌면서 페이지 출력하기
 					for(let i = data.startPageNum; i <= data.endPageNum; i++){
-						let template = `
-							<li class = "page-item">
-								<a class = "page-link \${pageNum == i ? 'active' : ''}" href = "javascript:request(\${i})">\${i}</a>
-							</li>
-						`;
-						$(template).appendTo(".pagination");
+						$(template)
+						.find("a").text(i).addClass(pageNum == i ? "active" : "").click(function(){
+							request(i);
+						}).parent().appendTo(".pagination");
 					}
 					if(data.endPageNum < data.totalPageCount){
-						let template = `
-							<li class = "page-item">
-								<a class = "page-link" href = "javascript:request(\${data.endPageNum + 1})">Next</a>
-							</li>
-						`;
-						$(template).appendTo(".pagination");
+						$(template)
+						.find("a").text("Next").on("click" , function(){
+							// a 요소를 클릭 시 새로운 자료를 요청한다.
+							request(data.endPageNum + 1);
+						}).parent().appendTo(".pagination");
 					}
 				}
 			});
